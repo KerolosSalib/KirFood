@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">KirFood</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="user_email">Email</string>
+    <string name="register">Register</string>
+    <string name="color">Color</string>
+    <string name="Insertemail">Insert Email</string>
+    <string name="insertPassword">InsertPassword</string>
+    <string name="phoneNumber">Insert Phone Number</string>
 </resources>
