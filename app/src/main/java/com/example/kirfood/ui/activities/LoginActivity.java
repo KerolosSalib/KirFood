@@ -39,20 +39,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         passwordEt = findViewById(R.id.password_edit_text);
         loginBtn.setOnClickListener(this);
         registerBtn.setOnClickListener(this);
-        colorSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(colorSwitch.isChecked())
-                    getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
-//                    parentLayout.setBackgroundColor(getResources().getColor(R.color.background_night_mood));
-                else
-//                    parentLayout.setBackgroundColor(getResources().getColor(R.color.background_light_mood));
-                    getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
-
-            }
-        });
     }
 
     @Override

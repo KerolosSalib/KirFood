@@ -8,4 +8,6 @@
     <string name="Insertemail">Insert Email</string>
     <string name="insertPassword">InsertPassword</string>
     <string name="phoneNumber">Insert Phone Number</string>
+    <string name="loginmenu">LOGIN</string>
+    <string name="checkout">Chaeckout</string>
 </resources>
