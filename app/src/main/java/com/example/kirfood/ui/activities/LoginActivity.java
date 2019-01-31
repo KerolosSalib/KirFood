@@ -1,4 +1,4 @@
-package com.example.kirfood;
+package com.example.kirfood.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.kirfood.R;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     LinearLayout parentLayout;
     Button loginBtn;
@@ -30,16 +32,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //Attache this to the activity_layout.xml file
         setContentView(R.layout.activity_login);
         Log.i("MainActivity","Activity Created");
-
         parentLayout = findViewById(R.id.parent_layout);
         loginBtn = findViewById(R.id.login_btn);
         registerBtn = findViewById(R.id.register_btn);
         emailEt = findViewById(R.id.email_edit_text);
         passwordEt = findViewById(R.id.password_edit_text);
-
-        if (!hasInvitationCode())
-            registerBtn.setVisibility(View.VISIBLE);
-
         loginBtn.setOnClickListener(this);
         registerBtn.setOnClickListener(this);
         colorSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -56,44 +53,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             }
         });
-
-
-    }
-
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.i("MainActivity","Activity Started");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i("MainActivity","Activity Resumed");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i("MainActivity","Activity Paused");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i("MainActivity","Activity Stoped");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.i("MainActivity","Activity Destroied");
-    }
-
-    private boolean hasInvitationCode(){
-        return false;
     }
 
     @Override

@@ -1,13 +1,15 @@
-package com.example.kirfood;
+package com.example.kirfood.ui.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.kirfood.Utilities;
+import com.example.kirfood.R;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -33,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Authentication.validateEmail(s.toString().trim());
+                Utilities.validateEmail(s.toString().trim());
             }
 
             @Override
@@ -49,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Authentication.validatePassword(s.toString().trim());
+                Utilities.validatePassword(s.toString().trim());
             }
 
             @Override
@@ -64,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Authentication.validatePhoneNumber(s.toString().trim());
+                Utilities.validatePhoneNumber(s.toString().trim());
             }
 
             @Override
@@ -79,7 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     private void enableRegisterButton(){
-        if(Authentication.canRegister())
+        if(Utilities.canRegister())
             registerButton.setEnabled(true);
         else {
             registerButton.setEnabled(false);
