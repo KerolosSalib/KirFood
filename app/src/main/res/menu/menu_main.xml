@@ -6,7 +6,7 @@
             android:id="@+id/login_menu"
             android:title="@string/loginmenu"
             app:showAsAction="always"
-            android:icon="@android:drawable/ic_dialog_dialer"
+            android:icon="@drawable/ic_person_black_24dp"
             />
         <item
             android:id="@+id/chechout_menu"

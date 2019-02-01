@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KirFood</string>
+    <string name="app_name">Kirfood</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="user_email">Email</string>
@@ -11,4 +11,8 @@
     <string name="loginmenu">LOGIN</string>
     <string name="checkout">Chaeckout</string>
     <string name="textfield_label">Text Field</string>
+    <string name="cancel">cancel</string>
+    <string name="don_t_have_an_account_create_an_account_now">Don\'t have an account ? Create an Account NOW</string>
+    <string name="emailError">Email is not valid</string>
+    <string name="passwordError">Password is not correct</string>
 </resources>

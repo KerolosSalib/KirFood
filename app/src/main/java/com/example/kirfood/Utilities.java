@@ -1,6 +1,9 @@
 package com.example.kirfood;
 
+import android.content.Context;
 import android.util.Patterns;
+import android.widget.Toast;
+
 public class Utilities {
 
     private static final int MIN_PASSWORD_LENGTH = 6;
@@ -30,5 +33,8 @@ public class Utilities {
     }
 
 
+    public static void showToast(Context c, String t){
+        Toast.makeText(c, t, Toast.LENGTH_LONG).show();
+    }
 
 }

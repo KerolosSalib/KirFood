@@ -1,5 +1,7 @@
 package com.example.kirfood.ui.activities;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
@@ -8,55 +10,80 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kirfood.R;
+import com.example.kirfood.Utilities;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    LinearLayout parentLayout;
-    Button loginBtn;
-    Button registerBtn;
+    Button loginButton;
+    Button cancelButton;
+    TextView registerTextView;
 
+    TextInputLayout emailTextInput;
     EditText emailEt;
-    EditText passwordEt;
-    Switch colorSwitch;
 
+    TextInputLayout passwordTextInput;
+    EditText passwordEt;
+
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Attache this to the activity_layout.xml file
+        setTheme(R.style.AppTheme_no_Actionbar); // set a no actionbar theme
+
+        //Set a full window activity to hide status bar
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_login);
-        Log.i("MainActivity","Activity Created");
-        parentLayout = findViewById(R.id.parent_layout);
-        loginBtn = findViewById(R.id.login_btn);
-        registerBtn = findViewById(R.id.register_btn);
+
+
+        loginButton = findViewById(R.id.login_button);
+        cancelButton = findViewById(R.id.cancel_button);
+        registerTextView = findViewById(R.id.register_text_view);
+
+        emailTextInput = findViewById(R.id.email_text_input);
         emailEt = findViewById(R.id.email_edit_text);
+
+        passwordTextInput = findViewById(R.id.password_text_input);
         passwordEt = findViewById(R.id.password_edit_text);
-        loginBtn.setOnClickListener(this);
-        registerBtn.setOnClickListener(this);
+
+        loginButton.setOnClickListener(this);
+        cancelButton.setOnClickListener(this);
+        registerTextView.setOnClickListener(this);
+
 
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.login_btn){
+        if (v.getId() == R.id.login_button){
             //To do login
-            if (controlEmail(emailEt) && controlPassword(passwordEt)) {
+            if (Utilities.validateEmail(emailEt.getText().toString()) && Utilities.validatePassword(passwordEt.getText().toString())) {
                 // TODO: 1/31/2019
-            }
-            else if(controlEmail(emailEt) && !controlPassword(passwordEt))
-                showToast("Email valid but too short pass");
-            else if (!controlEmail(emailEt) && controlPassword(passwordEt))
-                showToast("email not valid but good pass");
-            else
-                showToast("email and password not valid");
+                emailTextInput.setError(null);
+                passwordTextInput.setError(null);
 
+                startActivity(new Intent(this,MainActivity.class));
+            }else if (!Utilities.validateEmail(emailEt.getText().toString()))
+                emailTextInput.setError(getString(R.string.emailError));
+            else if (!Utilities.validatePassword(passwordEt.getText().toString()))
+                passwordTextInput.setError(getString((R.string.passwordError)));
 
-        }else if (v.getId() == R.id.register_btn){
+        }else if (v.getId() == R.id.cancel_button){
+            startActivity(new Intent(this, MainActivity.class));
+        }
+        else if (v.getId() == R.id.register_text_view){
             // To do Register
             Intent iRegister = new Intent(this, RegisterActivity.class);
             startActivity(iRegister);
@@ -64,25 +91,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    private void showToast(String t){
-        Toast.makeText(this, t, Toast.LENGTH_LONG).show();
-    }
 
-    private String getEmail(EditText eT){
-        return eT.getText().toString().trim().toLowerCase();
-    }
-    private boolean controlEmail(EditText eT){
-        String email = eT.getText().toString().trim();
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
-
-    private boolean controlPassword(EditText eT){
-        String password = eT.getText().toString().trim();
-        if (password.length() > 6)
-            return true;
-        else
-            return false;
-    }
 
 }
 
