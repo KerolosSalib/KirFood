@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -26,7 +28,7 @@ import com.google.android.material.textfield.TextInputLayout;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     Button loginButton;
     Button cancelButton;
-    TextView registerTextView;
+    LinearLayout registerTextView;
 
     TextInputLayout emailTextInput;
     EditText emailEt;
@@ -38,29 +40,72 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.AppTheme_no_Actionbar); // set a no actionbar theme
+//        setTheme(R.style.AppTheme_no_Actionbar); // set a no actionbar theme
 
         //Set a full window activity to hide status bar
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_login);
 
 
         loginButton = findViewById(R.id.login_button);
         cancelButton = findViewById(R.id.cancel_button);
-        registerTextView = findViewById(R.id.register_text_view);
+        registerTextView = findViewById(R.id.register_layout);
 
         emailTextInput = findViewById(R.id.email_text_input);
         emailEt = findViewById(R.id.email_edit_text);
 
+
+
         passwordTextInput = findViewById(R.id.password_text_input);
         passwordEt = findViewById(R.id.password_edit_text);
+
 
         loginButton.setOnClickListener(this);
         cancelButton.setOnClickListener(this);
         registerTextView.setOnClickListener(this);
+
+        emailEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(Utilities.validateEmail(emailEt.getText().toString()))
+                    emailTextInput.setError(null);
+                else
+                    emailTextInput.setError(getString(R.string.emailError));
+            }
+        });
+
+        passwordEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(Utilities.validatePassword(passwordEt.getText().toString()))
+                    passwordEt.setError(null);
+                else
+                    passwordTextInput.setError(getString(R.string.passwordError));
+            }
+        });
 
 
     }
@@ -69,21 +114,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         if (v.getId() == R.id.login_button){
             //To do login
-            if (Utilities.validateEmail(emailEt.getText().toString()) && Utilities.validatePassword(passwordEt.getText().toString())) {
-                // TODO: 1/31/2019
-                emailTextInput.setError(null);
-                passwordTextInput.setError(null);
-
-                startActivity(new Intent(this,MainActivity.class));
-            }else if (!Utilities.validateEmail(emailEt.getText().toString()))
-                emailTextInput.setError(getString(R.string.emailError));
-            else if (!Utilities.validatePassword(passwordEt.getText().toString()))
-                passwordTextInput.setError(getString((R.string.passwordError)));
+//            if (Utilities.validateEmail(emailEt.getText().toString()) && Utilities.validatePassword(passwordEt.getText().toString())) {
+//                // TODO: 1/31/2019
+//                emailTextInput.setError(null);
+//                passwordTextInput.setError(null);
+//
+//                startActivity(new Intent(this,MainActivity.class));
+//            }else if (!Utilities.validateEmail(emailEt.getText().toString()))
+//                emailTextInput.setError(getString(R.string.emailError));
+//            else if (!Utilities.validatePassword(passwordEt.getText().toString()))
+//                passwordTextInput.setError(getString((R.string.passwordError)));
 
         }else if (v.getId() == R.id.cancel_button){
             startActivity(new Intent(this, MainActivity.class));
         }
-        else if (v.getId() == R.id.register_text_view){
+        else if (v.getId() == R.id.register_layout){
             // To do Register
             Intent iRegister = new Intent(this, RegisterActivity.class);
             startActivity(iRegister);

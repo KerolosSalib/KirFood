@@ -32,6 +32,9 @@ public class Utilities {
         return EMAIL_VALID && PASSWORD_VALID && PHONE_NUMBER_VALID;
     }
 
+    public static boolean canLogin(){
+        return  EMAIL_VALID && PASSWORD_VALID;
+    }
 
     public static void showToast(Context c, String t){
         Toast.makeText(c, t, Toast.LENGTH_LONG).show();

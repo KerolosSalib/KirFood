@@ -21,8 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.LoginActivity" />
-        <activity android:name=".ui.activities.RegisterActivity" />
+        <activity android:name=".ui.activities.LoginActivity"
+            android:label="@string/login_actionbar_lable"/>
+        <activity android:name=".ui.activities.RegisterActivity"
+            android:label="@string/registration_actionbar_label"/>
     </application>
 
 </manifest>
