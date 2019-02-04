@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.kirfood.R;
+import com.example.kirfood.datamodels.Restaurant;
 import com.example.kirfood.ui.adabters.RestaurantAdabter;
 
 import java.util.ArrayList;
@@ -19,13 +20,13 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView restaurantRV;
     RecyclerView.LayoutManager layoutMager;
     RestaurantAdabter adabter;
-    ArrayList<String> arrayList;
+    ArrayList<Restaurant> arrayList;
 
-    private ArrayList<String> getData(){
+    private ArrayList<Restaurant> getData(){
         arrayList = new ArrayList<>();
-        arrayList.add("Macdonald's");
-        arrayList.add("Burger King");
-        arrayList.add("Road House");
+        arrayList.add(new Restaurant("www.mackdonald.com/logo","Mackdonald's","Via Tiburtina",10 ));
+        arrayList.add(new Restaurant("www.burgerking.com/logo","burgerking","Via Tiburtina",9 ));
+        arrayList.add(new Restaurant("www.roadhouse.com/logo","roadhouse","Via Tiburtina",8 ));
         return arrayList;
     }
 

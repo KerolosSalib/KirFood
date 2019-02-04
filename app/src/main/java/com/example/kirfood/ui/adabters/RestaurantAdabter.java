@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.kirfood.R;
+import com.example.kirfood.datamodels.Restaurant;
 
 import java.util.ArrayList;
 
@@ -15,8 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class RestaurantAdabter extends RecyclerView.Adapter {
     private LayoutInflater inflater;
-    private ArrayList<String> data;
-    public RestaurantAdabter(Context context, ArrayList<String> data){
+    private ArrayList<Restaurant> data;
+
+    public RestaurantAdabter(Context context, ArrayList<Restaurant> data){
         inflater = LayoutInflater.from(context);
         this.data = data;
     }
@@ -30,7 +32,7 @@ public class RestaurantAdabter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         RestaurantViewHolder vh =  (RestaurantViewHolder) holder;
-        vh.restaurantName.setText(data.get(position));
+        vh.restaurantName.setText(data.get(position).getrName());
     }
 
     @Override
