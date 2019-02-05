@@ -19,6 +19,14 @@
     <string name="sign_up_with_social_media_account">Sign Up with social media account</string>
     <string name="registration_actionbar_label">Registration</string>
     <string name="login_actionbar_lable">Login</string>
-    <string name="creat_an_account_now">Ceat an account now</string>
-    <string name="login_with">Loin with scoial</string>
+    <string name="creat_an_account_now">Creat an account now</string>
+    <string name="login_with">Loin with social</string>
+    <string name="min_ordine">Minimum order: </string>
+    <string name="cuurancy"> €</string>
+    <string name="restaurnt_name">Restaurant name</string>
+    <string name="restaurant_address">Restaurant Address</string>
+    <string name="view">Menu</string>
+    <string name="grid">Grid</string>
+    <string name="reating">Reating: </string>
+    <string name="_5">/5</string>
 </resources>

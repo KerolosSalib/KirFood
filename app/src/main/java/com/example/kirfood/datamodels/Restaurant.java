@@ -9,7 +9,7 @@ public class Restaurant {
     private String rAddress;
     private float rMinOrder;
 
-    public Restaurant(String rImage, String rName, String rAddress, float rMinOrder) {
+    public Restaurant(String  rImage, String rName, String rAddress, float rMinOrder) {
         this.rImage = rImage;
         this.rName = rName;
         this.rAddress = rAddress;
@@ -17,7 +17,7 @@ public class Restaurant {
     }
 
 
-    public String getrImage() {
+    public String  getrImage() {
         return rImage;
     }
 
