@@ -1,6 +1,7 @@
 package com.example.kirfood.ui.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter {
     }
 
     public class RestaurantViewHolder extends RecyclerView.ViewHolder {
+        private TextView menuButton;
         private ImageView restauranImage;
         private TextView restaurantName;
         private TextView restaurantAddress;
@@ -73,7 +75,16 @@ public class RestaurantAdapter extends RecyclerView.Adapter {
             restaurantName = itemView.findViewById(R.id.restaurant_name);
             restaurantAddress = itemView.findViewById(R.id.restaurant_address);
             restaurantMinOrder = itemView.findViewById(R.id.restaurant_min_order);
-
+            menuButton = itemView.findViewById(R.id.menu_button);
+            
+            menuButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // TODO: 2/5/2019  
+                }
+            });
         }
     }
+    
+    
 }
