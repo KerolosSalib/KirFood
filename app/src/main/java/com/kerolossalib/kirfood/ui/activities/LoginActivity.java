@@ -1,7 +1,6 @@
-package com.example.kirfood.ui.activities;
+package com.kerolossalib.kirfood.ui.activities;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
@@ -9,20 +8,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.kirfood.R;
-import com.example.kirfood.Utilities;
+import com.kerolossalib.kirfood.R;
+import com.kerolossalib.kirfood.Utilities;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {

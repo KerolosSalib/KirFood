@@ -1,4 +1,4 @@
-package com.example.kirfood.ui.activities;
+package com.kerolossalib.kirfood.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.kirfood.Utilities;
-import com.example.kirfood.R;
+import com.kerolossalib.kirfood.Utilities;
+import com.kerolossalib.kirfood.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{

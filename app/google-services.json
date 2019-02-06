@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "755325444070",
+    "firebase_url": "https://kirfood-a79af.firebaseio.com",
+    "project_id": "kirfood-a79af",
+    "storage_bucket": "kirfood-a79af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755325444070:android:28225e01e8f7486a",
+        "android_client_info": {
+          "package_name": "com.kerolossalib.kirfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "755325444070-j267tlukbb2ak0k6efjns08mrp5i4cnm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kerolossalib.kirfood",
+            "certificate_hash": "243e7a96028ca1665505e330e2ab162fe1d9c4cf"
+          }
+        },
+        {
+          "client_id": "755325444070-60urq50d8feh9b27snvhscqf9dcbnm4t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBu3UQqJmjRTwKdcL8vYw-gbOEVYlMCOc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "755325444070-60urq50d8feh9b27snvhscqf9dcbnm4t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

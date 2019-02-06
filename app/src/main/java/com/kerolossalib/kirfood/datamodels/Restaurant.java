@@ -1,4 +1,4 @@
-package com.example.kirfood.datamodels;
+package com.kerolossalib.kirfood.datamodels;
 
 public class Restaurant {
 

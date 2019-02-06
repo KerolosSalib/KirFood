@@ -1,15 +1,15 @@
-package com.example.kirfood.ui.activities;
+package com.kerolossalib.kirfood.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.kirfood.R;
+import com.kerolossalib.kirfood.R;
 
-public class CheckoutActivity extends AppCompatActivity {
+public class ShopActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_checkout);
+        setContentView(R.layout.activity_shop);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.kirfood;
+package com.kerolossalib.kirfood;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 public class SharedPreferencesSettings {
     private static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
-    private static String PACKAGE_NAME = "com.example.kirfood";
+    private static String PACKAGE_NAME = "com.kerolossalib.kirfood";
 
 
     public static void setSharedPreferences(Context context, String key, String value){

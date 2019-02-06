@@ -1,4 +1,4 @@
-package com.example.kirfood.ui.activities;
+package com.kerolossalib.kirfood.ui.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,10 +7,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.example.kirfood.R;
-import com.example.kirfood.SharedPreferencesSettings;
-import com.example.kirfood.datamodels.Restaurant;
-import com.example.kirfood.ui.adapters.RestaurantAdapter;
+import com.kerolossalib.kirfood.R;
+import com.kerolossalib.kirfood.SharedPreferencesSettings;
+import com.kerolossalib.kirfood.datamodels.Restaurant;
+import com.kerolossalib.kirfood.ui.adapters.RestaurantAdapter;
 
 import java.util.ArrayList;
 

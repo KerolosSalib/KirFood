@@ -1,7 +1,6 @@
-package com.example.kirfood.ui.adapters;
+package com.kerolossalib.kirfood.ui.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.kirfood.R;
-import com.example.kirfood.datamodels.Restaurant;
+import com.kerolossalib.kirfood.R;
+import com.kerolossalib.kirfood.datamodels.Restaurant;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.kirfood;
+package com.kerolossalib.kirfood;
 
 import android.content.Context;
 import android.util.Patterns;
