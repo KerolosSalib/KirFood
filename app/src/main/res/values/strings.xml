@@ -29,4 +29,15 @@
     <string name="grid">Grid</string>
     <string name="reating">Reating: </string>
     <string name="_5">/5</string>
+    <string name="setting">Setting</string>
+    <string name="settings">Settings</string>
+    <string name="shr_filter_title">Filtrs</string>
+    <string name="shr_featured_label">fasdfa</string>
+    <string name="shr_apartment_label">sdfsdfsdf</string>
+    <string name="shr_accessories_label">accessories</string>
+    <string name="shr_shoes_label">shoes</string>
+    <string name="shr_tops_label">tops</string>
+    <string name="shr_bottoms_label">bottoms</string>
+    <string name="shr_dresses_label">dresses</string>
+    <string name="shr_account_label">account</string>
 </resources>

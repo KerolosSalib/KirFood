@@ -3,21 +3,27 @@ package com.kerolossalib.kirfood.ui.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.kerolossalib.kirfood.R;
 import com.kerolossalib.kirfood.Utilities;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "LOGIN ACTIVITY";
     Button loginButton;
     Button cancelButton;
     LinearLayout registerTextView;
@@ -27,6 +33,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     TextInputLayout passwordTextInput;
     EditText passwordEt;
+
+
+    // TODO: Firebase
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -58,6 +69,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginButton.setOnClickListener(this);
         cancelButton.setOnClickListener(this);
         registerTextView.setOnClickListener(this);
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener(){
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if(user != null){
+                    Log.d(TAG,"User logedin: " + user.getUid());
+                }else{
+                    Log.d(TAG,"User loged out: " );
+
+                }
+            }
+        };
+
 
         emailEt.addTextChangedListener(new TextWatcher() {
             @Override
@@ -100,6 +126,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
 
 
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(mAuthListener != null)
+            mAuth.removeAuthStateListener(mAuthListener);
     }
 
     @Override
