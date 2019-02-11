@@ -2,19 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.kerolossalib.kirfood">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:largeHeap="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.activities.CheckoutActivity"/>
-        <activity android:name=".ui.activities.ShopActivity" />
         <activity android:name=".ui.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +21,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.LoginActivity"
-            android:label="@string/login_actionbar_lable"/>
-        <activity android:name=".ui.activities.RegisterActivity"
-            android:label="@string/registration_actionbar_label"/>
+        <activity android:name=".ui.activities.ShopActivity" />
+        <activity android:name=".ui.activities.CheckoutActivity" />
+
+        <activity
+            android:name=".ui.activities.LoginActivity"
+            android:label="@string/login_actionbar_lable" />
+        <activity
+            android:name=".ui.activities.RegisterActivity"
+            android:label="@string/registration_actionbar_label" />
     </application>
 
 </manifest>

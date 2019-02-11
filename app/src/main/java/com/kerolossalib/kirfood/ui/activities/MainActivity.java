@@ -7,12 +7,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.animation.LinearInterpolator;
 
-import com.evolve.backdroplibrary.BackdropContainer;
 import com.kerolossalib.kirfood.R;
 import com.kerolossalib.kirfood.SharedPreferencesSettings;
 import com.kerolossalib.kirfood.datamodels.Restaurant;
 import com.kerolossalib.kirfood.ui.adapters.RestaurantAdapter;
-import com.pedromassango.ibackdrop.Backdrop;
+
 
 import java.util.ArrayList;
 
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     RestaurantAdapter adapter;
     Toolbar toolbar;
     ArrayList<Restaurant> arrayList;
-    String TAG = "KIRO";
+
 
 
     private ArrayList<Restaurant> getData() {

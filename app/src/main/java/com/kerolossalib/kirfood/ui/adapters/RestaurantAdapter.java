@@ -1,6 +1,7 @@
 package com.kerolossalib.kirfood.ui.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.kerolossalib.kirfood.R;
 import com.kerolossalib.kirfood.datamodels.Restaurant;
+import com.kerolossalib.kirfood.ui.activities.ShopActivity;
 
 import java.util.ArrayList;
 
@@ -48,11 +50,11 @@ public class RestaurantAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         RestaurantViewHolder vh = (RestaurantViewHolder) holder;
         Restaurant item = data.get(position);
-        vh.restaurantName.setText(item.getrName());
-        vh.restaurantAddress.setText(item.getrAddress());
-        vh.restaurantMinOrder.setText(String.valueOf(item.getrMinOrder()));
+        vh.restaurantName.setText(item.getName());
+        vh.restaurantAddress.setText(item.getAddress());
+        vh.restaurantMinOrder.setText(String.valueOf(item.getMinimumOrder()));
 
-        Glide.with(context).load(item.getrImage()).into(vh.restauranImage);
+        Glide.with(context).load(item.getImageUrl()).into(vh.restauranImage);
     }
 
     @Override
@@ -79,7 +81,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter {
             menuButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO: 2/5/2019  
+                    // TODO: 2/5/2019
+
+                    context.startActivity(new Intent(context, ShopActivity.class));
                 }
             });
         }
