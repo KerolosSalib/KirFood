@@ -1,14 +1,14 @@
 package com.kerolossalib.kirfood.datamodels;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class Restaurant {
-
-
-
+    private String id;
     private String imageUrl;
     private String name;
     private String address;
@@ -26,10 +26,11 @@ public class Restaurant {
     }
 
     public Restaurant(JSONObject jsonRestaurant) throws JSONException {
-        name = jsonRestaurant.getString("name");
-        address = jsonRestaurant.getString("address");
-        minimumOrder = Float.valueOf(jsonRestaurant.getString("min_order"));
-        imageUrl = jsonRestaurant.getString("image_url");
+        this.name = jsonRestaurant.getString("name");
+        this.address = jsonRestaurant.getString("address");
+        this.minimumOrder = Float.valueOf(jsonRestaurant.getString("min_order"));
+        this.imageUrl = jsonRestaurant.getString("image_url");
+        this.id = jsonRestaurant.getString("id");
     }
 
     public String getImageUrl() {
@@ -49,7 +50,6 @@ public class Restaurant {
     }
 
 
-
     public String getAddress() {
         return address;
     }
@@ -64,6 +64,9 @@ public class Restaurant {
         imageUrl = s;
     }
 
+    public String getId() {
+        return id;
+    }
 
 
 }

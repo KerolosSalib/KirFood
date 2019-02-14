@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.kerolossalib.kirfood.R;
 import com.kerolossalib.kirfood.datamodels.Product;
+import com.kerolossalib.kirfood.datamodels.Restaurant;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,13 @@ public class ProductAdapter extends RecyclerView.Adapter {
         this.context = context;
     }
 
+    public ProductAdapter(Context context) {
+
+        this.data = new ArrayList<>();
+        mInflter = LayoutInflater.from(context);
+        this.context = context;
+    }
+
     public interface OnQuanityChangedListener {
         void onChange(float price);
     }
@@ -44,6 +52,10 @@ public class ProductAdapter extends RecyclerView.Adapter {
 
     private OnQuanityChangedListener onQuanityChangedListener;
 
+    public void setData(ArrayList<Product> data) {
+        this.data = data;
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override

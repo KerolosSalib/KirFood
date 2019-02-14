@@ -21,8 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RestaurantAdapter extends RecyclerView.Adapter {
     private LayoutInflater inflater;
     private ArrayList<Restaurant> data;
-    Context context;
-    private boolean isGridMode=  false;
+    private Context context;
+    private boolean isGridMode = false;
 
     public boolean isGridMode() {
         return isGridMode;
@@ -37,6 +37,13 @@ public class RestaurantAdapter extends RecyclerView.Adapter {
         this.data = data;
         this.context = context;
     }
+
+    public RestaurantAdapter(Context context) {
+        inflater = LayoutInflater.from(context);
+        this.data = new ArrayList<>();
+        this.context = context;
+    }
+
 
     @NonNull
     @Override
@@ -53,7 +60,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter {
         vh.restaurantName.setText(item.getName());
         vh.restaurantAddress.setText(item.getAddress());
         vh.restaurantMinOrder.setText(String.valueOf(item.getMinimumOrder()));
-
         Glide.with(context).load(item.getImageUrl()).into(vh.restauranImage);
     }
 
@@ -76,24 +82,26 @@ public class RestaurantAdapter extends RecyclerView.Adapter {
         private TextView restaurantMinOrder;
 
 
-        public RestaurantViewHolder(View itemView) {
+        RestaurantViewHolder(View itemView) {
             super(itemView);
             restauranImage = itemView.findViewById(R.id.restaurant_image);
             restaurantName = itemView.findViewById(R.id.restaurant_name);
             restaurantAddress = itemView.findViewById(R.id.restaurant_address);
             restaurantMinOrder = itemView.findViewById(R.id.restaurant_min_order);
             menuButton = itemView.findViewById(R.id.menu_button);
-            
+
             menuButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // TODO: 2/5/2019
-
-                    context.startActivity(new Intent(context, ShopActivity.class));
+                    String idRestaurant = data.get(getAdapterPosition()).getId();
+                    Intent intent = new Intent(context, ShopActivity.class);
+                    intent.putExtra("id", idRestaurant);
+                    context.startActivity(intent);
                 }
             });
         }
     }
-    
-    
+
+
 }

@@ -1,7 +1,11 @@
 package com.kerolossalib.kirfood.datamodels;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Product {
 
+    private String id;
     private String name;
     private int quantity = 0;
     private float price;
@@ -25,6 +29,15 @@ public class Product {
 
         this.name = name;
         this.price = price;
+    }
+
+
+    public Product (JSONObject jsonObject) throws JSONException{
+        this.id = jsonObject.getString("id");
+        this.name = jsonObject.getString("name");
+        this.price = (float) jsonObject.getDouble("price");
+        this.imageUrl = jsonObject.getString("image_url");
+
     }
 
     public String getName() {
