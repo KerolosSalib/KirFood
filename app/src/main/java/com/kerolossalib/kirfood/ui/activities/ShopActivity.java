@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.kerolossalib.kirfood.R;
 
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -81,12 +84,34 @@ public class ShopActivity extends AppCompatActivity implements ProductAdapter.On
         Glide.with(this).load(restaurant.getImageUrl()).into(restaurantIv);
         progressBar.setMax((int)restaurant.getMinimumOrder() * 100);
 
+
+        binData();
         layoutManager = new LinearLayoutManager(this);
         adapter = new ProductAdapter(this, restaurant.getProducts());
         adapter.setOnQuanityChangedListener(this);
-
         productRv.setLayoutManager(layoutManager);
+        ((SimpleItemAnimator) productRv.getItemAnimator()).setSupportsChangeAnimations(false);
         productRv.setAdapter(adapter);
+
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ShopActivity.this,CheckoutActivity.class));
+            }
+        });
+
+
+    }
+
+    private void binData(){
+
+        restaurant = getRestaurant();
+        restaurant.setImageUrl("https://rovato5stelle.files.wordpress.com/2013/11/mcdonald.jpg");
+        restaurant.setProducts(getProducts());
+        shopNameTv.setText(restaurant.getName());
+        shopAddress.setText(restaurant.getAddress());
+        Glide.with(this).load(restaurant.getImageUrl()).into(restaurantIv);
+        progressBar.setMax((int)restaurant.getMinimumOrder() * 100);
 
 
     }
@@ -102,22 +127,33 @@ public class ShopActivity extends AppCompatActivity implements ProductAdapter.On
         products.add(new Product("McMenu", 7,"https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg"));
         products.add(new Product("McMenu", 7,"https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg"));
         products.add(new Product("McMenu", 7,"https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg"));
+        products.add(new Product("McMenu", 7,"https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg"));
+        products.add(new Product("McMenu", 7,"https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg"));
+        products.add(new Product("McMenu", 7,"https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg"));
+        products.add(new Product("McMenu", 7,"https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg"));
+        products.add(new Product("McMenu", 7,"https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg"));
+        products.add(new Product("McMenu", 7,"https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg"));
 
         return products;
     }
 
     private void updateTotal(float item){
         total= total + item;
-        totalTxtView.setText("Total: ".concat( String.valueOf(total)));
+        totalTxtView.setText(getString(R.string.total).concat(String.valueOf(total)));
     }
 
     private void updateProgress(int progress){
         progressBar.setProgress(progress);
     }
 
+    private void enableBttuon(){
+        checkout.setEnabled(total>=restaurant.getMinimumOrder());
+    }
+
     @Override
     public void onChange(float price) {
         updateTotal(price);
         updateProgress((int)total*100);
+        enableBttuon();
     }
 }

@@ -57,6 +57,12 @@ public class RestaurantAdapter extends RecyclerView.Adapter {
         Glide.with(context).load(item.getImageUrl()).into(vh.restauranImage);
     }
 
+    public void setData(ArrayList<Restaurant> data) {
+        this.data = data;
+        notifyDataSetChanged();
+    }
+
+
     @Override
     public int getItemCount() {
         return data.size();

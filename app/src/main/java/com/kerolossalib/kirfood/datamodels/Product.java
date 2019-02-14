@@ -14,6 +14,18 @@ public class Product {
         this.price = price;
         this.imageUrl = imageUrl;
     }
+    public Product(String name, float price, int quantity){
+
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public Product(String name, float price){
+
+        this.name = name;
+        this.price = price;
+    }
 
     public String getName() {
         return name;
@@ -50,5 +62,8 @@ public class Product {
         this.quantity--;
     }
 
+    public float getSubtotal(){
+        return quantity * price;
+    }
 
 }

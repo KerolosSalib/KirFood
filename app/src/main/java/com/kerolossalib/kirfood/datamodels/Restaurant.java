@@ -1,5 +1,8 @@
 package com.kerolossalib.kirfood.datamodels;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class Restaurant {
@@ -20,6 +23,13 @@ public class Restaurant {
         this.minimumOrder = minimumOrder;
         products = new ArrayList<>();
 
+    }
+
+    public Restaurant(JSONObject jsonRestaurant) throws JSONException {
+        name = jsonRestaurant.getString("name");
+        address = jsonRestaurant.getString("address");
+        minimumOrder = Float.valueOf(jsonRestaurant.getString("min_order"));
+        imageUrl = jsonRestaurant.getString("image_url");
     }
 
     public String getImageUrl() {
@@ -53,4 +63,7 @@ public class Restaurant {
     public void setImageUrl(String s) {
         imageUrl = s;
     }
+
+
+
 }

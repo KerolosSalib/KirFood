@@ -2,16 +2,27 @@ package com.kerolossalib.kirfood.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.animation.LinearInterpolator;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.kerolossalib.kirfood.R;
 import com.kerolossalib.kirfood.SharedPreferencesSettings;
 import com.kerolossalib.kirfood.datamodels.Restaurant;
 import com.kerolossalib.kirfood.ui.adapters.RestaurantAdapter;
 
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -30,18 +41,18 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Restaurant> arrayList;
 
 
-
+    private final static  String TAG = "MainActivity";
     private ArrayList<Restaurant> getData() {
         arrayList = new ArrayList<>();
         arrayList.add(new Restaurant("https://foodrevolution.org/wp-content/uploads/2018/04/blog-featured-diabetes-20180406-1330.jpg", "Mackdonald's", "Via Tiburtina", 10));
         arrayList.add(new Restaurant("https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg", "Burgerking", "Via Tiburtina", 9));
-        arrayList.add(new Restaurant("https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg", "Roadhouse", "Via Tiburtina", 8));
-        arrayList.add(new Restaurant("https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg", "Roadhouse", "Via Tiburtina", 8));
-        arrayList.add(new Restaurant("https://images.pexels.com/photos/928475/pexels-photo-928475.jpeg", "Roadhouse", "Via Tiburtina", 8));
-        arrayList.add(new Restaurant("https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg", "Roadhouse", "Via Tiburtina", 8));
-        arrayList.add(new Restaurant("https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg", "Roadhouse", "Via Tiburtina", 8));
-        arrayList.add(new Restaurant("https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg", "Roadhouse", "Via Tiburtina", 8));
-        arrayList.add(new Restaurant("https://images.pexels.com/photos/161519/abstract-barbecue-barbeque-bbq-161519.jpeg", "KFC", "Via Tiburtina", 8));
+//        arrayList.add(new Restaurant("https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg", "Roadhouse", "Via Tiburtina", 8));
+//        arrayList.add(new Restaurant("https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg", "Roadhouse", "Via Tiburtina", 8));
+//        arrayList.add(new Restaurant("https://images.pexels.com/photos/928475/pexels-photo-928475.jpeg", "Roadhouse", "Via Tiburtina", 8));
+//        arrayList.add(new Restaurant("https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg", "Roadhouse", "Via Tiburtina", 8));
+//        arrayList.add(new Restaurant("https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg", "Roadhouse", "Via Tiburtina", 8));
+//        arrayList.add(new Restaurant("https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg", "Roadhouse", "Via Tiburtina", 8));
+//        arrayList.add(new Restaurant("https://images.pexels.com/photos/161519/abstract-barbecue-barbeque-bbq-161519.jpeg", "KFC", "Via Tiburtina", 8));
         return arrayList;
     }
 
@@ -64,12 +75,46 @@ public class MainActivity extends AppCompatActivity {
         restaurantRV.setLayoutManager(layoutManager);
         restaurantRV.setAdapter(adapter);
         getLayoutFromPreferences();
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://5ba19290ee710f0014dd764c.mockapi.io/api/v1/restaurant";
 
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.GET, // HTTP request method
+                url, // Server link
+                new Response.Listener<String>() {  // Listener for successful response
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG,response);
+                        //Start parsing
+                        try {
+                            JSONObject responseJson = new JSONObject(response);
+                            JSONArray restaurantJsonArray = responseJson.getJSONArray("data");
+                            for (int i = 0; i< restaurantJsonArray.length(); i++){
+                                Restaurant restaurant = new Restaurant(restaurantJsonArray.getJSONObject(i));
+                                arrayList.add(restaurant);
+                            }
+                            adapter.setData(arrayList);
 
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
+                    }
+                },
+                new Response.ErrorListener() { // Listener for error response
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(TAG,error.getMessage());
+                    }
+                }
+        );
 
-
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

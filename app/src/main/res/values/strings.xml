@@ -41,4 +41,9 @@
     <string name="shr_dresses_label">dresses</string>
     <string name="shr_account_label">account</string>
     <string name="total">Total</string>
+    <string name="order_label">Order review</string>
+    <string name="pay">Pay</string>
+    <string name="be_careful">Be carful</string>
+    <string name="remove_title">Remove</string>
+    <string name="confirm">Confirm</string>
 </resources>
