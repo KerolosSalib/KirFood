@@ -7,9 +7,9 @@ import android.widget.Toast;
 public class Utilities {
 
     private static final int MIN_PASSWORD_LENGTH = 6;
-    private static boolean EMAIL_VALID;
-    private static boolean PASSWORD_VALID;
-    private static boolean PHONE_NUMBER_VALID;
+    public static boolean EMAIL_VALID;
+    public static boolean PASSWORD_VALID;
+    public static boolean PHONE_NUMBER_VALID;
 
 
     public static boolean validateEmail(String email){
@@ -38,4 +38,5 @@ public class Utilities {
     public static void showToast(Context c, String t){
         Toast.makeText(c, t, Toast.LENGTH_LONG).show();
     }
+
 }

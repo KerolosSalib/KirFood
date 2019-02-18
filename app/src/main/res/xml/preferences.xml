@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <PreferenceCategory
+        android:title="Flight Preferences">
+        <CheckBoxPreference
+            android:title="Wake for meals"
+            android:key="wake_for_meal"
+            />
+        <EditTextPreference
+            android:title="Favorite city"
+            android:key="fav_city"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Kiro">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:title="@string/title_social"
+            android:key="switch"
+            android:summary="@string/sum_social" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

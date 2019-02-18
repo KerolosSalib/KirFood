@@ -8,7 +8,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.kerolossalib.kirfood.R;
 import com.kerolossalib.kirfood.SharedPreferencesSettings;
@@ -29,27 +35,32 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity implements Response.Listener<String>, Response.ErrorListener {
+
+    // Initialise Views
     RecyclerView restaurantRV;
     RecyclerView.LayoutManager layoutManager;
+
+    //Initialise Adapter and tool bar
     RestaurantAdapter adapter;
     Toolbar toolbar;
-    ArrayList<Restaurant> arrayList = new ArrayList<>();
 
+    //Initialise Restaurants Array List
+    ArrayList<Restaurant> restaurantsArrayList = new ArrayList<>();
 
     private final static String TAG = "MainActivity";
 
     /*private ArrayList<Restaurant> getData() {
-        arrayList = new ArrayList<>();
-        arrayList.add(new Restaurant("https://foodrevolution.org/wp-content/uploads/2018/04/blog-featured-diabetes-20180406-1330.jpg", "Mackdonald's", "Via Tiburtina", 10));
-        arrayList.add(new Restaurant("https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg", "Burgerking", "Via Tiburtina", 9));
-//        arrayList.add(new Restaurant("https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg", "Roadhouse", "Via Tiburtina", 8));
-//        arrayList.add(new Restaurant("https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg", "Roadhouse", "Via Tiburtina", 8));
-//        arrayList.add(new Restaurant("https://images.pexels.com/photos/928475/pexels-photo-928475.jpeg", "Roadhouse", "Via Tiburtina", 8));
-//        arrayList.add(new Restaurant("https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg", "Roadhouse", "Via Tiburtina", 8));
-//        arrayList.add(new Restaurant("https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg", "Roadhouse", "Via Tiburtina", 8));
-//        arrayList.add(new Restaurant("https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg", "Roadhouse", "Via Tiburtina", 8));
-//        arrayList.add(new Restaurant("https://images.pexels.com/photos/161519/abstract-barbecue-barbeque-bbq-161519.jpeg", "KFC", "Via Tiburtina", 8));
-        return arrayList;
+        restaurantsArrayList = new ArrayList<>();
+        restaurantsArrayList.add(new Restaurant("https://foodrevolution.org/wp-content/uploads/2018/04/blog-featured-diabetes-20180406-1330.jpg", "Mackdonald's", "Via Tiburtina", 10));
+        restaurantsArrayList.add(new Restaurant("https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg", "Burgerking", "Via Tiburtina", 9));
+//        restaurantsArrayList.add(new Restaurant("https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg", "Roadhouse", "Via Tiburtina", 8));
+//        restaurantsArrayList.add(new Restaurant("https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg", "Roadhouse", "Via Tiburtina", 8));
+//        restaurantsArrayList.add(new Restaurant("https://images.pexels.com/photos/928475/pexels-photo-928475.jpeg", "Roadhouse", "Via Tiburtina", 8));
+//        restaurantsArrayList.add(new Restaurant("https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg", "Roadhouse", "Via Tiburtina", 8));
+//        restaurantsArrayList.add(new Restaurant("https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg", "Roadhouse", "Via Tiburtina", 8));
+//        restaurantsArrayList.add(new Restaurant("https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg", "Roadhouse", "Via Tiburtina", 8));
+//        restaurantsArrayList.add(new Restaurant("https://images.pexels.com/photos/161519/abstract-barbecue-barbeque-bbq-161519.jpeg", "KFC", "Via Tiburtina", 8));
+        return restaurantsArrayList;
     }
 */
     @Override
@@ -93,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.login_button: {
+            case R.id.login_menu: {
                 startActivity(new Intent(this, LoginActivity.class));
                 return true;
             }
@@ -136,8 +147,26 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        Log.e("RequestError", error.getMessage());
-        Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+            //This indicates that the request has either time out or there is no connection
+            Toast.makeText(this,"Internet Connection error",Toast.LENGTH_LONG).show();
+        } else if (error instanceof AuthFailureError) {
+            //Error indicating that there was an Authentication Failure while performing the request
+            Toast.makeText(this,"AuthFailureError",Toast.LENGTH_LONG).show();
+        } else if (error instanceof ServerError) {
+            //Indicates that the server responded with a error response
+            Toast.makeText(this,"ServerError",Toast.LENGTH_LONG).show();
+        } else if (error instanceof NetworkError) {
+            //Indicates that there was network error while performing the request
+            Toast.makeText(this,"NetworkError",Toast.LENGTH_LONG).show();
+        } else if (error instanceof ParseError) {
+            // Indicates that the server response could not be parsed
+            Toast.makeText(this,"ParseError",Toast.LENGTH_LONG).show();
+        }
+
+        Log.e("RequestError", error.toString());
+//        Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -145,9 +174,9 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
         try {
             JSONArray jsonArray = new JSONArray(response);
             for (int i = 0; i < jsonArray.length(); i++) {
-                arrayList.add(new Restaurant(jsonArray.getJSONObject(i)));
+                restaurantsArrayList.add(new Restaurant(jsonArray.getJSONObject(i)));
             }
-            adapter.setData(arrayList);
+            adapter.setData(restaurantsArrayList);
         } catch (JSONException e) {
             Log.e("JSONError", e.getMessage());
         }

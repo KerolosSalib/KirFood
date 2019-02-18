@@ -8,6 +8,9 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RESTController {
     private static final String BASE_URL = "http://138.68.86.70/";
     private static final String VERSION = "";
@@ -17,10 +20,11 @@ public class RESTController {
 
     //End Points
     public static String RESTAURANT_ENDPOINT = "restaurants";
+    public static String REGISTER_ENDPOINT = "auth/local/register";
+    public static String LOGIN_ENDPOINT = "auth/local";
 
 
-
-    public RESTController (Context context){
+    public RESTController(Context context) {
 
         queue = Volley.newRequestQueue(context);
     }
@@ -33,7 +37,21 @@ public class RESTController {
                 error
         );
         queue.add(request);
+    }
 
+    public void postRequest(String endPoint, Response.Listener<String> success, Response.ErrorListener error, final Map<String, String> parametrs) {
+        StringRequest request = new StringRequest(Request.Method.POST,
+                URL.concat(endPoint),
+                success,
+                error
+        ) {
+            protected Map<String,String> getParams(){
+                Map<String,String> params;
+                params = parametrs;
+                return params;
+            }
+        };
+        queue.add(request);
     }
 
 }

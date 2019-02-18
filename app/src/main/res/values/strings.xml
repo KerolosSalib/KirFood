@@ -46,4 +46,6 @@
     <string name="be_careful">Be carful</string>
     <string name="remove_title">Remove</string>
     <string name="confirm">Confirm</string>
+    <string name="title_social">Social</string>
+    <string name="sum_social">Sum social</string>
 </resources>
