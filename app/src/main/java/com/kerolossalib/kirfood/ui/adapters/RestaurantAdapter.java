@@ -16,6 +16,7 @@ import com.kerolossalib.kirfood.ui.activities.ShopActivity;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RestaurantAdapter extends RecyclerView.Adapter {
@@ -75,6 +76,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter {
     }
 
     public class RestaurantViewHolder extends RecyclerView.ViewHolder {
+        private CardView menuCardView;
         private TextView menuButton;
         private ImageView restauranImage;
         private TextView restaurantName;
@@ -84,13 +86,15 @@ public class RestaurantAdapter extends RecyclerView.Adapter {
 
         RestaurantViewHolder(View itemView) {
             super(itemView);
+
+            menuCardView = itemView.findViewById(R.id.restaurant_card_view);
             restauranImage = itemView.findViewById(R.id.restaurant_image);
             restaurantName = itemView.findViewById(R.id.restaurant_name);
             restaurantAddress = itemView.findViewById(R.id.restaurant_address);
             restaurantMinOrder = itemView.findViewById(R.id.restaurant_min_order);
             menuButton = itemView.findViewById(R.id.menu_button);
 
-            menuButton.setOnClickListener(new View.OnClickListener() {
+            menuCardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // TODO: 2/5/2019

@@ -49,20 +49,7 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
 
     private final static String TAG = "MainActivity";
 
-    /*private ArrayList<Restaurant> getData() {
-        restaurantsArrayList = new ArrayList<>();
-        restaurantsArrayList.add(new Restaurant("https://foodrevolution.org/wp-content/uploads/2018/04/blog-featured-diabetes-20180406-1330.jpg", "Mackdonald's", "Via Tiburtina", 10));
-        restaurantsArrayList.add(new Restaurant("https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg", "Burgerking", "Via Tiburtina", 9));
-//        restaurantsArrayList.add(new Restaurant("https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg", "Roadhouse", "Via Tiburtina", 8));
-//        restaurantsArrayList.add(new Restaurant("https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg", "Roadhouse", "Via Tiburtina", 8));
-//        restaurantsArrayList.add(new Restaurant("https://images.pexels.com/photos/928475/pexels-photo-928475.jpeg", "Roadhouse", "Via Tiburtina", 8));
-//        restaurantsArrayList.add(new Restaurant("https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg", "Roadhouse", "Via Tiburtina", 8));
-//        restaurantsArrayList.add(new Restaurant("https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg", "Roadhouse", "Via Tiburtina", 8));
-//        restaurantsArrayList.add(new Restaurant("https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg", "Roadhouse", "Via Tiburtina", 8));
-//        restaurantsArrayList.add(new Restaurant("https://images.pexels.com/photos/161519/abstract-barbecue-barbeque-bbq-161519.jpeg", "KFC", "Via Tiburtina", 8));
-        return restaurantsArrayList;
-    }
-*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

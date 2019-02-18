@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#D81B60</color>
-    <color name="colorPrimaryDark">#CE0B52</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="light_background_colore">#ffffff</color>
+    <color name="colorPrimary">@color/primaryColor</color>
+    <color name="colorPrimaryDark">@color/primaryDarkColor</color>
+    <color name="colorAccent">@color/secondaryColor</color>
+
+    <color name="light_background_color">#ffffff</color>
     <color name="resturant_name_color">#000000</color>
+
+    <color name="primaryColor">#00c6ed</color>
+    <color name="primaryLightColor">#68f9ff</color>
+    <color name="primaryDarkColor">#0095ba</color>
+    <color name="secondaryColor">#eeec00</color>
+    <color name="secondaryLightColor">#ffff56</color>
+    <color name="secondaryDarkColor">#b7ba00</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#000000</color>
 
 </resources>
