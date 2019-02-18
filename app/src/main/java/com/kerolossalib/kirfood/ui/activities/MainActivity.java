@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         assert actionbar != null;
+        actionbar.setDisplayShowTitleEnabled(false);
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.baseline_menu_24);
 
@@ -103,9 +104,7 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
                 setLayoutManager();
                 item.setIcon(adapter.isGridMode() ? R.drawable.baseline_dehaze_24 : R.drawable.baseline_grid_on_24);
             }
-            case R.id.filters: {
 
-            }
 
         }
         return super.onOptionsItemSelected(item);

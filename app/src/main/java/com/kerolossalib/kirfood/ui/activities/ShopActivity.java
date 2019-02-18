@@ -40,6 +40,7 @@ public class ShopActivity extends AppCompatActivity implements ProductAdapter.On
     private Button checkout;
     private ProgressBar progressBar;
     private ImageView restaurantIv;
+    private TextView minOrder;
 
     // RecyclerView components
     private RecyclerView productRv;
@@ -74,6 +75,7 @@ public class ShopActivity extends AppCompatActivity implements ProductAdapter.On
         shopAddress = findViewById(R.id.shop_desc_tv);
         totalTxtView = findViewById(R.id.total_tv);
         restaurantIv = findViewById(R.id.shop_iv);
+        minOrder = findViewById(R.id.min_order);
 
         checkout = findViewById(R.id.checkout);
         progressBar = findViewById(R.id.progress);
@@ -122,6 +124,7 @@ public class ShopActivity extends AppCompatActivity implements ProductAdapter.On
             shopAddress.setText(this.restaurant.getAddress());
             Glide.with(this).load(this.restaurant.getImageUrl()).into(restaurantIv);
             progressBar.setMax((int) this.restaurant.getMinimumOrder() * 100);
+            minOrder.setText(String.valueOf(this.restaurant.getMinimumOrder()));
         }
 
     }
@@ -140,7 +143,7 @@ public class ShopActivity extends AppCompatActivity implements ProductAdapter.On
 
     private void updateTotal(float item) {
         total = total + item;
-        totalTxtView.setText(getString(R.string.total).concat(String.valueOf(total)));
+        totalTxtView.setText(String.valueOf(total));
     }
 
     private void updateProgress(int progress) {

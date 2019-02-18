@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/restaurant_card_view"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/restaurant_card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:orientation="vertical"
-    app:cardElevation="3dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/restaurnt_name"
-            android:textColor="@color/resturant_name_color"
+            android:textColor="@color/primaryColor"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -39,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/restaurant_address"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
 
         <LinearLayout
@@ -52,73 +53,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/min_ordine"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
-                android:text="@string/cuurancy"
-                android:textSize="12sp" />
+                android:text="@string/curancy"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/restaurant_min_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
 
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="4dp" />
 
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="2dp"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/reating" />
-
-                <TextView
-                    android:id="@+id/restaurant_reating"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    android:text="4" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/_5" />
-
-            </LinearLayout>
+                android:text="@string/rating"
+                android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/menu_button"
+                android:id="@+id/restaurant_rating"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="bottom|end"
-                android:paddingEnd="10dp"
-                android:paddingBottom="5dp"
-                android:text="@string/view"
-                android:textColor="@color/colorAccent" />
-        </LinearLayout>
+                android:padding="2dp"
+                android:text="40"
+                android:textSize="12sp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_5"
+                android:textSize="12sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

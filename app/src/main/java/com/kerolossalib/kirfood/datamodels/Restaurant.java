@@ -13,6 +13,12 @@ public class Restaurant {
     private String name;
     private String address;
     private float minimumOrder;
+
+    public int getRating() {
+        return rating;
+    }
+
+    private int rating;
     private ArrayList<Product> products;
 
 
@@ -31,6 +37,7 @@ public class Restaurant {
         this.minimumOrder = Float.valueOf(jsonRestaurant.getString("min_order"));
         this.imageUrl = jsonRestaurant.getString("image_url");
         this.id = jsonRestaurant.getString("id");
+        this.rating = jsonRestaurant.getInt("rating");
     }
 
     public String getImageUrl() {
