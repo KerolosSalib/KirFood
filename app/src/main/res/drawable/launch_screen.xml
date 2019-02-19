@@ -7,7 +7,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/kirfoodlogo"
-            android:tileMode="disabled" />
+            android:mipMap="true"
+            android:src="@drawable/kirfoodlogo" />
     </item>
 </layer-list>

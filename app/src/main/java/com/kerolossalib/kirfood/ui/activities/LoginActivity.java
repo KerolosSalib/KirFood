@@ -24,8 +24,8 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.kerolossalib.kirfood.R;
-import com.kerolossalib.kirfood.SharedPreferencesSettings;
 import com.kerolossalib.kirfood.Utilities;
+import com.kerolossalib.kirfood.datamodels.User;
 import com.kerolossalib.kirfood.services.RESTController;
 
 import org.json.JSONException;
@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Log.d(TAG, "User logedin: " + user.getUid());
+                    Log.d(TAG, "User loged in: " + user.getUid());
                 } else {
                     Log.d(TAG, "User loged out: ");
 
@@ -173,7 +173,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
             RESTController restController = new RESTController(this);
-            restController.postRequest(RESTController.LOGIN_ENDPOINT,this,this,getLoginParams());
+            restController.postRequest(RESTController.LOGIN_ENDPOINT, this, this, getLoginParams());
 
         } else if (v.getId() == R.id.cancel_button) {
             startActivity(new Intent(this, MainActivity.class));
@@ -212,13 +212,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onResponse(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
-            SharedPreferencesSettings.setSharedPreferences(this, "user_token", jsonObject.getString("jwt"));
+            User.login(this, jsonObject.getString("jwt"));
+            Intent intent = new Intent();
+            setResult(RESULT_OK);
         } catch (JSONException e) {
             Toast.makeText(this, "can't make a registration", Toast.LENGTH_LONG).show();
         }
 
         Toast.makeText(this, "Thank you for Login", Toast.LENGTH_LONG).show();
-        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
     protected Map<String, String> getLoginParams() {

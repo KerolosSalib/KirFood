@@ -6,6 +6,7 @@
         <item
             android:id="@+id/view_mode_button"
             android:title="@string/grid"
+            app:showAsAction="always"
             />
         <item
             android:id="@+id/login_menu"

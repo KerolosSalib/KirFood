@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.kerolossalib.kirfood.R;
 import com.kerolossalib.kirfood.SharedPreferencesSettings;
 import com.kerolossalib.kirfood.datamodels.Restaurant;
+import com.kerolossalib.kirfood.datamodels.User;
 import com.kerolossalib.kirfood.services.RESTController;
 import com.kerolossalib.kirfood.ui.adapters.RestaurantAdapter;
 
@@ -27,6 +28,7 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -36,6 +38,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity implements Response.Listener<String>, Response.ErrorListener {
 
+    private static final int LOGIN_REQUEST_CODE = 2001;
     // Initialise Views
     RecyclerView restaurantRV;
     RecyclerView.LayoutManager layoutManager;
@@ -97,17 +100,31 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
                 return true;
             }
             case R.id.chechout_menu: {
-                startActivity(new Intent(this, CheckoutActivity.class));
+                if(User.isLoggedin(this))
+                    startActivity(new Intent(this, CheckoutActivity.class));
+                else
+                    startActivityForResult(new Intent(this, LoginActivity.class), LOGIN_REQUEST_CODE);
                 return true;
             }
             case R.id.view_mode_button: {
                 setLayoutManager();
                 item.setIcon(adapter.isGridMode() ? R.drawable.baseline_dehaze_24 : R.drawable.baseline_grid_on_24);
+                return true;
             }
-
+            case R.id.setting_menu: {
+                User.logout(this);
+                return true;
+            }
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == LOGIN_REQUEST_CODE && resultCode == RESULT_OK){
+            startActivity(new Intent(this, CheckoutActivity.class));
+        }
     }
 
     private void setLayoutManager() {

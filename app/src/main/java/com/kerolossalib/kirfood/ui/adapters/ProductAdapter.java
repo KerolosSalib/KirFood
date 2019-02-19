@@ -87,11 +87,11 @@ public class ProductAdapter extends RecyclerView.Adapter {
 
     public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView productName, productPrice, productQty;
-        public ImageView addBtn, removeBtn, productImage;
+        TextView productName, productPrice, productQty;
+        ImageView  productImage, addBtn,removeBtn;
 
 
-        public ProductViewHolder(@NonNull View itemView) {
+        ProductViewHolder(@NonNull View itemView) {
             super(itemView);
 
             productName = itemView.findViewById(R.id.item_name);

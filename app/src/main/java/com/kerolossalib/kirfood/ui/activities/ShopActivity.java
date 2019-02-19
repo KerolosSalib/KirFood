@@ -35,6 +35,11 @@ import androidx.recyclerview.widget.SimpleItemAnimator;
 
 public class ShopActivity extends AppCompatActivity implements ProductAdapter.OnQuanityChangedListener, Response.Listener<String>, Response.ErrorListener {
 
+    //Static
+    public static final String RESTAURANT_ID_KEY = "RESTAURANT_ID_KEY";
+    private static final String TAG = ShopActivity.class.getSimpleName();
+    private static final int LOGIN_REQUEST_CODE = 2001;
+
     // UI components
     private TextView shopNameTv, shopAddress, totalTxtView;
     private Button checkout;
@@ -56,6 +61,7 @@ public class ShopActivity extends AppCompatActivity implements ProductAdapter.On
 
 
     private float total = 0;
+    private String restaurantId;
 
 
     @Override
@@ -127,18 +133,6 @@ public class ShopActivity extends AppCompatActivity implements ProductAdapter.On
             minOrder.setText(String.valueOf(this.restaurant.getMinimumOrder()));
         }
 
-    }
-
-    //TODO hardcoded
-/*    private Restaurant getRestaurant() {
-        return new Restaurant();
-    }*/
-
-    //TODO hardcoded
-    private ArrayList<Product> getProducts() {
-
-        products.add(new Product("McMenu", 7, "https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg"));
-        return products;
     }
 
     private void updateTotal(float item) {
