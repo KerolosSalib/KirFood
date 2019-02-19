@@ -50,4 +50,7 @@
     <string name="sum_social">Sum social</string>
     <string name="item_name">Item name</string>
     <string name="price">Price: €</string>
+    <string name="home">HOME</string>
+    <string name="profile">PROFILE</string>
+    <string name="check_out">CHECK OUT</string>
 </resources>

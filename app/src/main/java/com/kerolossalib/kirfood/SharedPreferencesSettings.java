@@ -22,6 +22,7 @@ public class SharedPreferencesSettings {
     }
 
     public static void setSharedPreferences(Context context, String key, int value) {
+        sharedPreferences = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
         editor = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE).edit();
         editor.putInt(key, value);
         editor.apply();
