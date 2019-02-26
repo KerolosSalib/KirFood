@@ -14,15 +14,14 @@ import android.widget.TextView;
 import com.kerolossalib.kirfood.R;
 import com.kerolossalib.kirfood.datamodels.Product;
 
-import java.util.ArrayList;
-import java.util.zip.Inflater;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class OrderProductsAdapter extends RecyclerView.Adapter<OrderProductsAdapter.OrderProductViewHolder>{
 
-    private ArrayList<Product> dataSet;
+    private List<Product> dataSet;
     private Context context;
     private LayoutInflater inflater;
     private float miniumOrder;
@@ -30,7 +29,7 @@ public class OrderProductsAdapter extends RecyclerView.Adapter<OrderProductsAdap
 
 
 
-    public  OrderProductsAdapter(Context context, ArrayList<Product> dataSet,float miniumOrder){
+    public  OrderProductsAdapter(Context context, List<Product> dataSet, float miniumOrder){
 
         this.dataSet = dataSet;
         this.context = context;

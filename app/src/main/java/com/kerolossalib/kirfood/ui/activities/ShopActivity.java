@@ -1,6 +1,6 @@
 package com.kerolossalib.kirfood.ui.activities;
 
-import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,8 +14,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
 import com.kerolossalib.kirfood.R;
+import com.kerolossalib.kirfood.datamodels.Order;
 import com.kerolossalib.kirfood.datamodels.Product;
 import com.kerolossalib.kirfood.datamodels.Restaurant;
+import com.kerolossalib.kirfood.services.AppDatabase;
 import com.kerolossalib.kirfood.services.RESTController;
 import com.kerolossalib.kirfood.ui.adapters.ProductAdapter;
 
@@ -58,7 +60,6 @@ public class ShopActivity extends AppCompatActivity implements ProductAdapter.On
     private Restaurant restaurant;
 
     Toolbar toolbar;
-
 
     private float total = 0;
     private String restaurantId;
@@ -107,7 +108,8 @@ public class ShopActivity extends AppCompatActivity implements ProductAdapter.On
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ShopActivity.this, CheckoutActivity.class));
+//                startActivity(new Intent(ShopActivity.this, CheckoutActivity.class));
+                new SaveTask().execute();
             }
         });
     }
@@ -179,6 +181,23 @@ public class ShopActivity extends AppCompatActivity implements ProductAdapter.On
         } catch (JSONException e) {
             Log.e("JSONError", e.getMessage());
 
+        }
+    }
+
+    class SaveTask extends AsyncTask<Void, Void, Void> {
+
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            Order order = new Order();
+            order.setRestaurant(restaurant);
+            order.setTotal(total);
+
+            order.setProducts(adapter.getSelectedProdutcs());
+            AppDatabase appDatabase = AppDatabase.create(ShopActivity.this);
+            appDatabase.orderDao().insert(order);
+            return null;
         }
     }
 

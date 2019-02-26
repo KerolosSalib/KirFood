@@ -1,24 +1,44 @@
 package com.kerolossalib.kirfood.datamodels;
 
-import android.util.Log;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Restaurant {
-    private String id;
-    private String imageUrl;
-    private String name;
-    private String address;
-    private float minimumOrder;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
 
-    public int getRating() {
-        return rating;
+@Entity (tableName = "restaurant")
+public class Restaurant {
+
+    public void setId(String id) {
+        this.id = id;
     }
 
+    @ColumnInfo(name = "restaurant_id")
+    private String id;
+
+    @ColumnInfo(name = "image_url")
+    private String imageUrl;
+
+    @ColumnInfo(name = "name")
+    private String name;
+
+    @ColumnInfo(name = "address")
+    private String address;
+
+    @ColumnInfo(name = "minimum_order")
+    private float minimumOrder;
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    @ColumnInfo(name = "rating")
     private int rating;
+
+    @Ignore
     private ArrayList<Product> products;
 
 
@@ -39,6 +59,11 @@ public class Restaurant {
         this.id = jsonRestaurant.getString("id");
         this.rating = jsonRestaurant.getInt("rating");
     }
+
+    public int getRating() {
+        return rating;
+    }
+
 
     public String getImageUrl() {
         return this.imageUrl;

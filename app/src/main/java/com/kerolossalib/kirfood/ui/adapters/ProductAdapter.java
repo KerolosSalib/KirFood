@@ -84,6 +84,14 @@ public class ProductAdapter extends RecyclerView.Adapter {
         return data.size();
     }
 
+    public ArrayList<Product> getSelectedProdutcs (){
+        ArrayList<Product> selectedProducts = new ArrayList<>();
+        for(Product product : data ){
+            if (product.getQuantity() > 0 )
+                selectedProducts.add(product);
+        }
+        return selectedProducts;
+    }
 
     public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
